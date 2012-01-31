@@ -16,7 +16,7 @@ namespace :db do
         'password'  => '--password'
       }.map { |opt, arg| "#{arg}=#{config[opt]}" if config[opt] }.compact
       args << config['database']
-      args << table_name unless table_name.blank?
+      args << table_name.split(/\s+/) unless table_name.blank?
 
       exec('mysqldump', *args)
 
